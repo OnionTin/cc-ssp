@@ -310,8 +310,8 @@ export default {
     return {
       list: [
         {
-          msrc: "https://tva1.sinaimg.cn/thumbnail/006y8mN6ly1g95rjyub5bj30go0b40wc.jpg",
-          src: "https://tva1.sinaimg.cn/large/006y8mN6ly1g95rjyub5bj30go0b40wc.jpg",
+          msrc: require("@/assets/images/int_m1.png"),
+          src: require("@/assets/images/int_m1.png"),
           w: 600,
           h: 400
         }
