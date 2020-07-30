@@ -275,12 +275,8 @@
           </div>
           <p class="telLook">客服及举报电话：400-917-1100</p>
         </div>
-        <img
-          src="@/assets/images/weixin.png"
-          alt=""
-          class="wxcode"
-          onclick="handleImg('@/assets/images/weixin.png',this)"
-        />
+        <img src="@/assets/images/weixin.png" alt="" class="wxcode previewer-demo-img" @click="show(0)" />
+        <img src="@/assets/images/weixin.png" alt="" class="wxcode previewer-demo-img" @click="show(1)" />
         <p>
           版权所有 Copyright 2020 中国电信集团系统集成有限责任公司
           <a href="http://www.beian.miit.gov.cn/" target="_blank" style="cursor: pointer;">京ICP备11045362号-17</a>
@@ -288,17 +284,7 @@
       </div>
     </div>
     <!-- 图片预览 -->
-    <div class="imgs">
-      <img
-        class="previewer-demo-img"
-        v-for="(item, index) in list"
-        :src="item.src"
-        width="100"
-        @click="show(index)"
-        :key="index"
-      />
-      <previewer ref="previewer" :list="list" :options="options"> </previewer>
-    </div>
+    <previewer ref="previewer" :list="list" :options="options"></previewer>
   </div>
 </template>
 <script>
@@ -314,33 +300,20 @@ export default {
           src: require("@/assets/images/int_m1.png"),
           w: 600,
           h: 400
+        },
+        {
+          msrc: "https://tva1.sinaimg.cn/thumbnail/006y8mN6ly1g95rmt8pq4j30go0b4n28.jpg",
+          src: "https://tva1.sinaimg.cn/large/006y8mN6ly1g95rmt8pq4j30go0b4n28.jpg",
+          w: 600,
+          h: 400
         }
-        // {
-        //   msrc: "https://tva1.sinaimg.cn/thumbnail/006y8mN6ly1g95rmt8pq4j30go0b4n28.jpg",
-        //   src: "https://tva1.sinaimg.cn/large/006y8mN6ly1g95rmt8pq4j30go0b4n28.jpg",
-        //   w: 600,
-        //   h: 400
-        // },
-        // {
-        //   msrc: "https://tva1.sinaimg.cn/thumbnail/006y8mN6ly1g95rn3grt6j30go0b4n0w.jpg",
-        //   src: "https://tva1.sinaimg.cn/large/006y8mN6ly1g95rn3grt6j30go0b4n0w.jpg",
-        //   w: 600,
-        //   h: 400
-        // }
       ],
       options: {
-        getThumbBoundsFn(index) {
-          // find thumbnail element
-          let thumbnail = document.querySelectorAll(".previewer-demo-img")[index];
-          // get window scroll Y
+        getThumbBoundsFn(indexNum) {
+          let thumbnail = document.querySelectorAll(".previewer-demo-img")[indexNum];
           let pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
-          // optionally get horizontal scroll
-          // get position of element relative to viewport
           let rect = thumbnail.getBoundingClientRect();
-          // w = width
           return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
-          // Good guide on how to get element coordinates:
-          // http://javascript.info/tutorial/coordinates
         }
       }
     };
@@ -365,4 +338,8 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+/deep/.pswp__top-bar {
+  display: none;
+}
+</style>
